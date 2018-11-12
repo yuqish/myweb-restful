@@ -69,16 +69,16 @@ public class Utilities {
 		for(int n=0;n<count;n++) {
 		    for(int i=0, j=i+1;i<input.length()-1-n;i++,j++) {
 		
-		    	boolean i_isUpper=false;
-		    	boolean j_isUpper=false;
+		    	boolean i_isUpper = false;
+		    	boolean j_isUpper = false;
 		    	
 				if(Character.isUpperCase(ch[i])){
 					i_isUpper = true;
-					ch[i]=Character.toLowerCase(ch[i]);
+					ch[i] = Character.toLowerCase(ch[i]);
 				}
 				if(Character.isUpperCase(ch[j])){
 					j_isUpper = true;
-					ch[j]=Character.toLowerCase(ch[j]);
+					ch[j] = Character.toLowerCase(ch[j]);
 				}
 				
 				if(ch[i]>ch[j]) {
@@ -87,13 +87,22 @@ public class Utilities {
 					ch[j] = a;
 					
 					if(i_isUpper) {
-						ch[j]=Character.toUpperCase(ch[j]); //bug fixed
+						ch[j] = Character.toUpperCase(ch[j]); //bug fixed, was toUpperCase(ch[i])
 					}
 					if(j_isUpper) {
-						ch[i]=Character.toUpperCase(ch[i]); //bug fixed
+						ch[i] = Character.toUpperCase(ch[i]); //bug fixed, was toUpperCase(ch[j])
 					}
+					System.out.println("swap "+ch[i]+" with "+ch[j]);
 					
-					System.out.println("swap"+ch[i]+"with"+ch[j]);
+				}else if (ch[i] == ch[j] && j_isUpper && !i_isUpper){ //added: if Same letter, upper case in the front
+					
+					char a = ch[i];
+					ch[i] = ch[j];
+					ch[j] = a;
+					
+					ch[i] = Character.toUpperCase(ch[i]);
+					System.out.println("swap "+ch[i]+" with "+ch[j]);
+					
 				}else {
 				
 					if(i_isUpper) {
